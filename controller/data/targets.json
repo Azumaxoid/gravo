@@ -1,0 +1,11 @@
+{
+  "ir": {
+    "dashboard": "d/000000052/advanced-layout",
+    "zabbix": "ir-core",
+    "zabbix-production": "Production",
+    "zabbix-cluster": "bt",
+    "appdynamics": "worksapplications-dev",
+    "appdynamics-application": "maiw-production",
+    "apppdynamics-tire": "collabo"
+  }
+}   

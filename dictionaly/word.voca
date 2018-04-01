@@ -1,0 +1,83 @@
+% NUM
+1	i ch i
+2	n i
+3	s a N
+6	r o k u
+12	j u u n i
+15	j u u g o
+30	s a N j u u
+45	y o N j u u g o
+1	w a N
+1	u w a N
+2	t u:
+3	s u r i:
+6	s i q k u s u
+12	t u w e r u b u
+15	f i f u t i: N
+30	s a: t i: N
+45	f o a t i: f a i b u
+% TARGET
+jpholdings	j e i p i: h o: r u d i N g u s u
+ir	a i a: r u
+% YESTERDAY
+yesterday	i e s u t a d i
+yesterday	k i n o u
+% TODAY
+today	ky o u
+today	ky o o
+today	ky o:
+today	t u d e i
+% SOFAR
+sofar	s o: f a:
+sofar	k o r e m a d e
+% LAST
+last	r a s u t o
+last	m a e
+% RANGEIS
+rangeis	r e N j i i z u
+rangeis	h a N i w a
+% MIN
+mins	m i n i q t o
+mins	f u N
+% HOUR
+hours	a w a: z u
+hours	n a w a: z u
+hours	n a w a:
+hours	j i k a N
+% OPEN
+open	o u p u N
+open	h i r a i t e
+open	h i r a k e
+% BACK
+goback	b u a q k u
+goback	m o d o r u
+% POSITION
+right	m i g i g a m e N
+right	m i g i
+right	u r a i t o
+right	u r a i t o
+left	h i d a r i g a m e N
+left	r e f u t o
+middle	ch u u o u
+middle	ch u u o u g a m e N
+middle	m i d o r u
+middle	m i d u
+% BROWSER
+browser	b u r a u z a
+browser	b u r a u z a:
+% ON
+on	o N
+% TAKEABREAK
+takeabreak	t e i k u a b u r e i k u
+takeabreak	y a s u m e
+takeabreak	y a s u N d e t e
+% HEY
+hey	h e i g u r a b o:
+hey	o n e g a i
+% AREYOUREADY
+areyouready	a: y u: r e d i:
+areyouready	j u N b i
+% NS_B
+[s]	silB
+% NS_E
+[/s]	silE
