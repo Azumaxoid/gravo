@@ -1,0 +1,13 @@
+.metadata
+.project
+.config
+*.data
+*.db
+*.log
+*.bak
+*.swp
+*.swo
+*.json
+*~
+
+node_modules/
