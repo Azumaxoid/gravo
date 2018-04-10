@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+.dictation {
+    position: absolute;
+    top: 0;
+    left: 120px;
+}
+
+.sentence {
+    padding: 4px 8px 4px 8px;
+    width: 240px;
+    font-size: .8rem;
+    border-radius: 8px;
+    margin: 2px 0 2px 0;
+}
+
+.sentence.sentence-me {
+    background-color: #90CAF9;
+}
+
+.sentence-you {
+    background-color: #C8E6C9;
+}
+  </style>
+</head>
+<body>
+  <div class="gravo"><img src="imgs/operator.svg" width=100></div>
+  <div class="dictation">
+    <div class="sentence sentence-me">I'm GRAVO. Please ask me.</div>
+    <div class="sentence sentence-you">Your message is green.</div>
+  </div>
+</body>
+</html>
+      
