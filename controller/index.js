@@ -98,10 +98,6 @@ var IAmReady = false;
 var browsers = {};
 var currentBrowser = '';
 var prepareBrowsers = async (params) => {
-  if(params[2] !== 'areyouready') {
-    console.log('What do you want?');
-    return;
-  }
   if(IAmReady) {
     console.log('Finnish or preparing. just a while');
     return;
@@ -112,32 +108,55 @@ var prepareBrowsers = async (params) => {
   browsers.left || (browsers.left = await ready(0, 'left'));
 };
 
-var takeABreak = ()=>{IAmReady = false;};
+async function removeHereMessage() {
+  if (browsers[currentBrowser]) {
+    const exPage = await getCurrentPage();
+    await exPage.evaluate(()=>{
+      var el = document.getElementsByClassName('navbar__spacer')[0];
+      el.innerText = '';
+    });
+  }
+}
 
-var setBrowser= async (params) => {
-  const exPage = browsers[currentBrowser] ? await getCurrentPage() : null;
-  exPage && await exPage.evaluate(()=>{
-    var el = document.getElementsByClassName('navbar__spacer')[0];
-    el.innerText = '';
-  });
-  var browser = params[params.length - 2];
-  currentBrowser = browser;
+async function addHereMessage() {
   const page = await getCurrentPage();
   await page.evaluate(()=>{
     var el = document.getElementsByClassName('navbar__spacer')[0];
-    el.innerText = 'Monica is here';
+    el.innerText = 'Gravo is here';
     el.style.textAlign = "center";
     window.focus();
   });
-  console.log(browser + ' is setted');
+  console.log(currentBrowser + ' is setted');
+}
+
+var takeABreak = async ()=>{
+  await removeHereMessage()
+  currentBrowser='';
+;};
+
+var setBrowser= async (params) => {
+  await removeHereMessage();
+  var browser = params[2];
+  currentBrowser = browser;
+  await addHereMessage();
+};
+
+var openDashboard = async (params) => {
+  const page = await getCurrentPage();
+  var target = targets[params[2]];
+  var kind = params[3];
+  var nextUrl = config.url + target.dashboard[kind];
+  await page.goto(nextUrl);
+  saveLastUrl(currentBrowser, nextUrl);
 };
 
 var openPage = async (params) => {
   const page = await getCurrentPage();
-  var target = targets[params[params.length - 2]];
+  var target = targets[params[2]];
   var nextUrl = config.url + target.dashboard;
   await page.goto(nextUrl);
   saveLastUrl(currentBrowser, nextUrl);
+  setTimeout(async () => { await addHereMessage() }, 5000);
 };
 
 var changeRange = async (params) => {
@@ -150,6 +169,7 @@ var changeRange = async (params) => {
     return location.href;
   }, range);
   saveLastUrl(currentBrowser, nextUrl);
+  setTimeout(async () => { await addHereMessage() }, 5000);
 };
 
 var backPage = async () => {
@@ -169,10 +189,11 @@ var getPage = async browser => {
 };
 
 var actions = {
- hey : prepareBrowsers,
+ areyouready : prepareBrowsers,
  takeabreak : takeABreak,
  browser :  setBrowser,
  open :  openPage,
+ dashboard :  openDashboard,
  rangeis : changeRange,
  back :  backPage
 };
@@ -193,10 +214,14 @@ julius.on('recognitionSuccess', function (recognition) {
         // What are you talking about
         return;
     }
-    var words = recognition[0].words.map(d=>d.word);
+    var words = recognition[0].words.slice(1, recognition[0].words.length - 1).map(d=>d.word);
+    console.log(words);
+    if (words[0] !== 'hey') {
+      return;
+    }
     var action = words[1];
+    console.log('[ACTION] '  + action);
     getAndDoAction(action, words);
-    console.log(JSON.stringify(recognition));
 });
 
 // Using a single function to handle multiple signals
